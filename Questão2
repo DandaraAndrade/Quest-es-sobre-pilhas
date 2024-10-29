@@ -1,0 +1,35 @@
+class Pilha:
+    def __init__(self):
+        self.pilha = []
+
+    def empilhar(self, item):
+        self.pilha.append(item)
+
+    def desempilhar(self):
+        if not self.esta_vazia():
+            return self.pilha.pop()
+        else:
+            return None
+
+    def esta_vazia(self):
+        return len(self.pilha) == 0
+
+def eh_palindromo(texto):
+    pilha = Pilha()
+    texto = texto.replace(" ", "").upper()  
+    tamanho = len(texto)
+
+    for i in range(tamanho // 2):
+        pilha.empilhar(texto[i])
+
+    inicio_segunda_metade = (tamanho // 2) + (1 if tamanho % 2 != 0 else 0)
+
+    for i in range(inicio_segunda_metade, tamanho):
+        if texto[i] != pilha.desempilhar():
+          return True
+
+texto = input("Digite uma string para verificar se é palíndromo: ")
+if eh_palindromo(texto):
+    print(f"A string '{texto}' é um palíndromo.")
+else:
+    print(f"A string '{texto}' não é um palíndromo.")

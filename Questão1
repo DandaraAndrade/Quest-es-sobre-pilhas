@@ -1,0 +1,54 @@
+class Pilha:
+    def __init__(self, T):
+        self.T = T
+        self.pilha = []
+
+    def empilhar(self, I):
+        if len(self.pilha) < self.T:
+            self.pilha.append(I)
+            print(f"Elemento '{I}' empilhado com sucesso!")
+        else:
+            print("Erro! A pilha está cheia, não foi possível empilhar.")
+
+    def desempilhar(self):
+        if self.pilha:
+            item = self.pilha.pop()
+            print(f"Elemento '{item}' desempilhado com sucesso.")
+            return item
+        else:
+            print("Erro: A pilha está vazia, não é possível desempilhar.")
+            return None
+
+    def topo(self):
+        if self.pilha:
+            return self.pilha[-1]
+        else:
+            print("A pilha está vazia.")
+            return None
+
+def menu():
+    T = int(input("Informe o tamanho máximo da pilha: "))
+    pilha = Pilha(T)
+
+    while True:
+        print("\nEscolha uma operação:")
+        print("a) Empilhar")
+        print("b) Desempilhar")
+        print("c) Sair")
+        opcao = input("Opção: ").lower()
+
+        if opcao == 'a':
+            item = input("Digite o elemento a ser empilhado: ")
+            pilha.empilhar(item)
+        elif opcao == 'b':
+            pilha.desempilhar()
+        elif opcao == 'c':
+            print("Saindo do programa.")
+            topo = pilha.topo()
+            if topo is not None:
+                print(f"O elemento no topo da pilha é: {topo}")
+            break
+        else:
+            print("Opção inválida. Tente novamente.")
+
+menu()
